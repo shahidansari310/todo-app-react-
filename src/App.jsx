@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import Navbar from './components/navbar'
 import Footer from './components/Footer'
@@ -8,27 +8,51 @@ function App() {
 
   const [todo, settodo] = useState("")
   const [todos, settodos] = useState([])
+  const [finished, setfinished] = useState(true)
 
-  const handleedit = (e,id) => {
-   let t=todos.filter(i=>i.id===id);
+  useEffect(() => {
+    let todostring = localStorage.getItem("todos");
+    if (todostring) {
+      let todos = JSON.parse(todostring)
+      settodos(todos)
+    }
+
+  }, [])
+
+
+  const Savetolocal = () => {
+    localStorage.setItem("todos", JSON.stringify(todos))
+  }
+
+  const handleedit = (e, id) => {
+    let t = todos.filter(i => i.id === id);
     settodo(t[0].todo)
-    let newtodos =todos.filter(item=>{
-      return item.id!==id
+    let newtodos = todos.filter(item => {
+      return item.id !== id
     });
     settodos(newtodos)
   }
 
-  const handledelete = (e,id) => {
-    let newtodos =todos.filter(item=>{
-      return item.id!==id
+  const handledelete = (e, id) => {
+    let newtodos = todos.filter(item => {
+      return item.id !== id
     });
     settodos(newtodos)
   }
+  const togglefinish=(e) => {
+   setfinished(!finished) 
+  }
+  
+
+  useEffect(() => {
+    Savetolocal()
+  }, [todos])
 
   const handleadd = () => {
     settodos([...todos, { id: uuidv4(), todo, isCompleted: false }])
     settodo("")
     console.log(todos)
+    Savetolocal()
   }
 
   const handlechange = (e) => {
@@ -50,26 +74,29 @@ function App() {
       <Navbar />
       <div className="container mx-auto my-1 border-rounded-xl p-5 bg-red-300 w-1/2 min-h-[85vh] text-center">
         <div className="addtodo ">
-          <h2 className="text-lg font-bold">Add a Todo</h2>
+          <h2 className="text-lg font-bold">Add a To Do</h2>
           <input onChange={handlechange} value={todo} type="text" className='bg-white border-rounded-xl w-1/2 my-5' />
-          <button onClick={handleadd} className='rounded-xl bg-green-200 p-1 mx-2 font-bold ring-1 hover:text-sm'> Submit</button>
+          <button onClick={handleadd} disabled={todo.length<3} className='rounded-xl bg-green-200 p-1 mx-2 font-bold ring-1 hover:text-sm'> ADD</button>
         </div>
-        <h2 className="text-xl font-bold ">Your Todo List</h2>
+        <div className="check flex justify-start gap-3">
+        <input type="checkbox" checked={finished} onChange={togglefinish}/>
+        Show Finished To dos 
+        </div>
+        <h2 className="text-xl font-bold ">Your To Do List</h2>
         <div className="todos">
-          {todos.length===0 && <div>No Todos to display.</div>}
-          {todos.map((items, index) => {
-            return (
-              <div key={items.id} className="todo flex justify-between p-1">
+          {todos.length === 0 && <div>No To Dos to display.</div>}
+          {todos.map(items => {
+            return (finished || !items.isCompleted) && <div key={items.id} className="todo flex justify-between p-1">
                 <div className="flex gap-5">
-                <input name={items.id} onChange={handleCheckbox} type="checkbox" value={items.isCompleted} />
-                <div className={items.isCompleted ? "line-through" : ""}>{items.todo}</div>
+                  <input name={items.id} onChange={handleCheckbox} type="checkbox" checked={items.isCompleted} />
+                  <div className={items.isCompleted ? "line-through" : ""}>{items.todo}</div>
                 </div>
                 <div className="button">
-                  <button onClick={(e)=>{handleedit(e,items.id)}} className='rounded-xl bg-green-200 p-1 mx-2 font-bold ring-1 hover:text-sm'>Edit</button>
-                  <button onClick={(e)=>{handledelete(e,items.id)}} className='rounded-xl bg-green-200 p-1 mx-2 font-bold ring-1 hover:text-sm'>Delete</button>
+                  <button onClick={(e) => { handleedit(e, items.id) }} className='rounded-xl bg-green-200 p-1 mx-2 font-bold ring-1 hover:text-sm'>Edit</button>
+                  <button onClick={(e) => { handledelete(e, items.id) }} className='rounded-xl bg-green-200 p-1 mx-2 font-bold ring-1 hover:text-sm'>Delete</button>
                 </div>
               </div>
-            )
+            
           })}
         </div>
       </div>
