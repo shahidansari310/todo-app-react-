@@ -17,8 +17,9 @@ function App() {
   }
 
   const handleadd = () => {
-    settodos([...todo, { todo, isCompleted: false }])
+    settodos([...todos, { todo, isCompleted: false }])
     settodo("")
+    console.log(todos)
   }
 
   const handlechange = (e) => {
@@ -38,8 +39,8 @@ function App() {
         <div className="todos">
           {todos.map((items, index) => {
             return (
-              <div key={index} className="todo flex">
-                <div className="text">{items.todo}</div>
+              <div key={index} className="todo flex p-1">
+                <div className={items.isCompleted? "":"line-through"}>{items.todo}</div>
                 <div className="button">
                   <button onClick={handledelete} className='rounded-xl bg-green-200 p-1 mx-2 font-bold ring-1 hover:text-sm'>Edit</button>
                   <button onClick={handleedit} className='rounded-xl bg-green-200 p-1 mx-2 font-bold ring-1 hover:text-sm'>Delete</button>
