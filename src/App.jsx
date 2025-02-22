@@ -72,16 +72,19 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className="container mx-auto my-1 border-rounded-xl p-5 bg-red-300 w-1/2 min-h-[85vh] text-center">
+      <div className="container mx-auto my-1 rounded-3xl p-5 bg-teal-200 w-3/4 min-h-[88vh] text-center">
         <div className="addtodo ">
-          <h2 className="text-lg font-bold">Add a To Do</h2>
-          <input onChange={handlechange} value={todo} type="text" className='bg-white border-rounded-xl w-1/2 my-5' />
-          <button onClick={handleadd} disabled={todo.length<3} className='rounded-xl bg-green-200 p-1 mx-2 font-bold ring-1 hover:text-sm'> ADD</button>
+          <h2 className="text-lg font-bold">ADD TO DO</h2>
+          <input onChange={handlechange} value={todo} type="text" className='bg-white rounded-xl w-1/2 my-2 p-1' />
+          <br/>
+          <button onClick={handleadd} disabled={todo.length<3} className='rounded-xl w-1/2 my-2 p-1 bg-green-200  font-bold ring-1 hover:text-sm'> ADD</button>
         </div>
         <div className="check flex justify-start gap-3">
         <input type="checkbox" checked={finished} onChange={togglefinish}/>
         Show Finished To dos 
         </div>
+        <hr className='m-4'></hr>
+
         <h2 className="text-xl font-bold ">Your To Do List</h2>
         <div className="todos">
           {todos.length === 0 && <div>No To Dos to display.</div>}

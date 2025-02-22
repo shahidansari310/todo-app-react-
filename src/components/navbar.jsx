@@ -2,11 +2,10 @@ import React from 'react'
 
 const Navbar = () => {
   return (
-    <div className='flex justify-between bg-slate-400 p-2 text-xl'>
-        <span className='font-bold'>iTask</span> 
-      <ul className='flex gap-8 mx-9'>
-        <li className='hover:font-bold transiton-all'><a href="#">Home</a></li>
-        <li className='hover:font-bold transiton-all'>Your task</li>
+    <div className='flex text-white justify-between bg-slate-700 p-2 text-xl'>
+      <span className='font-bold'>iTask</span>
+      <ul className='flex gap-8 mx-9 font-mono hover:font-bold'>
+        Shahid Ansari
       </ul>
     </div>
   )

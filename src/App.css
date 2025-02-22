@@ -1,1 +1,9 @@
 @import "tailwindcss";
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.bd{
+    background: url("https://plus.unsplash.com/premium_photo-1666998556439-072267ab72ae?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Y3JlYXRpdmUlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww");
+    backdrop-filter: blur(75%);
+    box-shadow: 10px 5px 5px 20px;
+}
