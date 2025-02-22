@@ -72,12 +72,12 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className="container mx-auto my-1 rounded-3xl p-5 bg-teal-200 w-5/6 min-h-[88vh] text-center">
+      <div className="container mx-auto my-1 rounded-3xl p-5 bg-teal-200 w-95% min-h-[88vh] text-center">
         <div className="addtodo ">
           <h2 className="text-lg font-bold">ADD TO DO</h2>
           <input onChange={handlechange} value={todo} type="text" className='bg-white rounded-xl w-1/2 my-2 p-1' />
           <br/>
-          <button onClick={handleadd} disabled={todo.length<3} className='rounded-xl w-1/2 my-2 p-1 bg-green-200  font-bold ring-1 hover:text-sm'> ADD</button>
+          <button onClick={handleadd} disabled={todo.length<3} className='rounded-xl w-1/2 my-2 p-1 bg-green-200  font-bold ring-1 hover:text-sm'> ADD </button>
         </div>
         <div className="check flex justify-start gap-3">
         <input type="checkbox" checked={finished} onChange={togglefinish}/>
@@ -95,8 +95,8 @@ function App() {
                   <div className={items.isCompleted ? "line-through" : ""}>{items.todo}</div>
                 </div>
                 <div className="button">
-                  <button onClick={(e) => { handleedit(e, items.id) }} className='rounded-xl bg-green-200 p-1 mx-2 font-bold ring-1 hover:text-sm'>Edit</button>
-                  <button onClick={(e) => { handledelete(e, items.id) }} className='rounded-xl bg-green-200 p-1 mx-2 font-bold ring-1 hover:text-sm'>Delete</button>
+                  <button onClick={(e) => { handleedit(e, items.id) }} className='rounded-xl bg-green-200 p-1 mx-2 font-bold ring-1 hover:text-sm'><img className="h-6" src="https://cdn-icons-png.flaticon.com/512/4226/4226577.png" alt="" /></button>
+                  <button onClick={(e) => { handledelete(e, items.id) }} className='rounded-xl bg-green-200 p-1 mx-2 font-bold ring-1 hover:text-sm'><img className="h-6" src="https://cdn-icons-png.flaticon.com/512/6301/6301508.png" alt="" /></button>
                 </div>
               </div>
             

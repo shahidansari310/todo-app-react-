@@ -2,8 +2,8 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div className='position-fixed text-white bg-black text-center'>
-       iTask &copy; all rights reserved.
+    <div className='position-fixed text-white bg-black text-center p-2'>
+       ❄  iTask by Shahid Ansari   ❄
     </div>
   )
 }
