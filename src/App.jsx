@@ -72,7 +72,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className="container mx-auto my-1 rounded-3xl p-5 bg-teal-200 w-3/4 min-h-[88vh] text-center">
+      <div className="container mx-auto my-1 rounded-3xl p-5 bg-teal-200 w-5/6 min-h-[88vh] text-center">
         <div className="addtodo ">
           <h2 className="text-lg font-bold">ADD TO DO</h2>
           <input onChange={handlechange} value={todo} type="text" className='bg-white rounded-xl w-1/2 my-2 p-1' />
